@@ -6,6 +6,7 @@
 *.pem
 *.key
 *secret*
+!scripts/secret-scan.mjs
 *mnemonic*
 *wallet*.json
 
