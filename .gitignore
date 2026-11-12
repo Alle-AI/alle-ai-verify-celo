@@ -1,0 +1,30 @@
+# Secrets and local environment (NEVER COMMIT)
+.env
+.env.*
+!.env.example
+.self/
+*.pem
+*.key
+*secret*
+*mnemonic*
+*wallet*.json
+
+# Dependencies
+node_modules/
+
+# Build & Hardhat artifacts
+artifacts/
+cache/
+dist/
+build/
+typechain-types/
+coverage/
+coverage.json
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+.vscode/
+.idea/
