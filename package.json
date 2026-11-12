@@ -1,0 +1,35 @@
+{
+  "name": "alle-ai-verify-celo",
+  "version": "1.0.0",
+  "description": "Alle-AI Verify: Open Multi-Model AI Verification & Consensus Attestation Layer on Celo (ERC-8004 + Self Agent ID)",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alle-AI/alle-ai-verify-celo.git"
+  },
+  "scripts": {
+    "secret:scan": "node scripts/secret-scan.mjs",
+    "wallet:generate": "node scripts/generate-wallets.mjs",
+    "verify:evidence": "node scripts/verify_evidence.mjs",
+    "compile": "node scripts/compile.mjs",
+    "test": "node --test test/*.test.mjs",
+    "deploy:sepolia": "node scripts/deploy.mjs --network sepolia",
+    "deploy:mainnet": "node scripts/deploy.mjs --network mainnet",
+    "attest:sepolia": "node scripts/seed-attestations.mjs --network sepolia",
+    "erc8004:register:sepolia": "node scripts/register-erc8004.mjs --network sepolia",
+    "erc8004:register:mainnet": "node scripts/register-erc8004.mjs --network mainnet",
+    "start": "node src/server.mjs"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.6.1",
+    "@selfxyz/agent-sdk": "0.3.1",
+    "cors": "2.8.6",
+    "dotenv": "18.0.10",
+    "express": "5.3.0",
+    "viem": "2.57.19"
+  },
+  "devDependencies": {
+    "solc": "0.8.28"
+  }
+}
