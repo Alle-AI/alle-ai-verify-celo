@@ -35,12 +35,17 @@ Every item below is deployed, source-verified (`exact_match`), and live on **Cel
 2. **Canonical ERC-8004 Identity Registry (`0x8004A818BFB912233c491871b3d84c89A494BD9e`):**
    * **Agent ID:** `#932` (owned by `0x0339DCD1Af5c464Ff25195f015Ee0DCA161eB74A`)
    * **Registration Transaction:** [`https://celo-sepolia.blockscout.com/tx/0x84c025e2c870d06d066c249d86679f3ed48142f6c4074ce07a3174ebf29006fb`](https://celo-sepolia.blockscout.com/tx/0x84c025e2c870d06d066c249d86679f3ed48142f6c4074ce07a3174ebf29006fb)
-3. **5 Verifiable Onchain Multi-Model Attestations (`#0` through `#4`):**
+   * **Content-Addressed `data:` URI Upgrade (Celopedia 8004scan Compliance + ERC-8021 Tag):** [`https://celo-sepolia.blockscout.com/tx/0x99bdec72223b5fe099c2c76ff870eb25e3de03c4b0b879a1f47b1fd40c15dfbc`](https://celo-sepolia.blockscout.com/tx/0x99bdec72223b5fe099c2c76ff870eb25e3de03c4b0b879a1f47b1fd40c15dfbc)
+3. **Celopedia (`celo-org/celopedia-skills`) & ERC-8021 Attribution Tag (`@celo/attribution-tags`):**
+   * Installed in `.agents/skills/celopedia-skill` & `.claude/skills/celopedia-skill`.
+   * Every Celo verification transaction carries the ERC-8021 attribution suffix `0x616c6c655f61695f7665726966790e0080218021802180218021802180218021` (`alle_ai_verify`), verified onchain via `verifyTx`.
+4. **6 Verifiable Onchain Multi-Model Attestations (`#0` through `#5`):**
    * **Attestation `#0` (`AGREE`, 9715 bps, 3 models — Ecosystem Fact Verification):** [`0x03691513...`](https://celo-sepolia.blockscout.com/tx/0x036915134faffe9793659c75252c8917722e79b979091a4975c40139b4d354a6)
    * **Attestation `#1` (`AGREE`, 9715 bps, 3 models — Alle-Quant Pre-Trade Journal & Risk Audit):** [`0xc5d5aab1...`](https://celo-sepolia.blockscout.com/tx/0xc5d5aab1294481f883af91fb279a9fc35ecec112d0895f4ab72fae99f8d26a7b)
    * **Attestation `#2` (`SPLIT`, 3013 bps, 3 models — Divergent Signal Detection):** [`0x9041fc4c...`](https://celo-sepolia.blockscout.com/tx/0x9041fc4c2d97c8d0c15227b29e85a0fa627885f1d336f9767949da513ea326f3)
    * **Attestation `#3` (`DISAGREE`, 9820 bps, 3 models — Risk Guardrail Violation Rejection):** [`0x9cae91b9...`](https://celo-sepolia.blockscout.com/tx/0x9cae91b9df173ce18d266571dad1f486f6c565805e62b72a03a734081464919e)
    * **Attestation `#4` (`AGREE`, 9715 bps, 3 models — End-to-End `POST /v1/verify` HTTP Call):** [`0xa15ad9e9...`](https://celo-sepolia.blockscout.com/tx/0xa15ad9e9f52879e35ba1458a2ae6e778df8d7fbcbd51ac8ffd2410ce43f1ce6b)
+   * **Attestation `#5` (`AGREE`, 9715 bps, 3 models — Celopedia ERC-8021 Tagged Attestation):** [`0xfa124b60...`](https://celo-sepolia.blockscout.com/tx/0xfa124b60ea2e685b22a4ede37fa512a3aa7656d9299afcacc33a66daa402aa44)
 
 ---
 

@@ -22,13 +22,16 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import {
+  concat,
   createPublicClient,
   createWalletClient,
+  encodeFunctionData,
   http,
   parseEventLogs,
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { celo, celoSepolia } from "viem/chains";
+import { toDataSuffix } from "@celo/attribution-tags";
 import {
   evaluateClaimMultiModel,
   computeKeccak256Hash,
@@ -36,6 +39,9 @@ import {
 } from "./verifier-engine.mjs";
 
 dotenv.config();
+
+export const CELO_ATTRIBUTION_CODE = process.env.CELO_ATTRIBUTION_CODE || "alle_ai_verify";
+export const CELO_ATTRIBUTION_SUFFIX = toDataSuffix(CELO_ATTRIBUTION_CODE);
 
 const ROOT = process.cwd();
 const ARTIFACT_PATH = path.join(ROOT, "artifacts", "VerificationRegistry.json");
@@ -114,6 +120,11 @@ export function createApp() {
         mainnetSelfAgentId: process.env.MAINNET_SELF_AGENT_ID || null,
         sepoliaSelfAgentId: process.env.SEPOLIA_SELF_AGENT_ID || null,
       },
+      celopedia: {
+        skillInstalled: true,
+        erc8021AttributionCode: CELO_ATTRIBUTION_CODE,
+        erc8021Suffix: CELO_ATTRIBUTION_SUFFIX,
+      },
     });
   });
 
@@ -160,22 +171,34 @@ export function createApp() {
           transport: http(ctx.rpcUrl),
         });
 
-        const { request } = await ctx.publicClient.simulateContract({
+        const args = [
+          evalResult.claimHash,
+          evalResult.resultHash,
+          evalResult.verdictCode,
+          evalResult.agreementBps,
+          evalResult.modelCount,
+          ctx.erc8004AgentId,
+        ];
+
+        await ctx.publicClient.simulateContract({
           account: agentAccount,
           address: ctx.registryAddress,
           abi: artifact.abi,
           functionName: "recordVerification",
-          args: [
-            evalResult.claimHash,
-            evalResult.resultHash,
-            evalResult.verdictCode,
-            evalResult.agreementBps,
-            evalResult.modelCount,
-            ctx.erc8004AgentId,
-          ],
+          args,
         });
 
-        const txHash = await walletClient.writeContract(request);
+        const rawCallData = encodeFunctionData({
+          abi: artifact.abi,
+          functionName: "recordVerification",
+          args,
+        });
+        const taggedCallData = concat([rawCallData, CELO_ATTRIBUTION_SUFFIX]);
+
+        const txHash = await walletClient.sendTransaction({
+          to: ctx.registryAddress,
+          data: taggedCallData,
+        });
         const txReceipt = await ctx.publicClient.waitForTransactionReceipt({ hash: txHash });
         const [attestedLog] = parseEventLogs({
           abi: artifact.abi,
@@ -195,6 +218,10 @@ export function createApp() {
           blockNumber: Number(txReceipt.blockNumber),
           txHash,
           explorerUrl: `${ctx.explorerBase}/tx/${txHash}`,
+          erc8021Attribution: {
+            code: CELO_ATTRIBUTION_CODE,
+            suffix: CELO_ATTRIBUTION_SUFFIX,
+          },
         };
       } else {
         onchainReceipt = {

@@ -32,12 +32,14 @@ When autonomous AI agents execute trades, summarize research, or call external A
 | Component | Address / ID | Verification Proof |
 | :--- | :--- | :--- |
 | **`VerificationRegistry` Smart Contract** | `0x31c2f9f8527e556d25ac6fd40d760c147c4a0e16` | [Verified Source (`exact_match`) on Blockscout](https://celo-sepolia.blockscout.com/address/0x31c2f9f8527e556d25ac6fd40d760c147c4a0e16) · [Sepolia Celoscan](https://sepolia.celoscan.io/address/0x31c2f9f8527e556d25ac6fd40d760c147c4a0e16) |
-| **Canonical ERC-8004 Identity** | **Agent ID `#932`** (`0x8004A818BFB912233c491871b3d84c89A494BD9e`) | [Registration Tx `0x84c025e2...`](https://celo-sepolia.blockscout.com/tx/0x84c025e2c870d06d066c249d86679f3ed48142f6c4074ce07a3174ebf29006fb) |
+| **Canonical ERC-8004 Identity** | **Agent ID `#932`** (`0x8004A818BFB912233c491871b3d84c89A494BD9e`) | [Registration Tx `0x84c025e2...`](https://celo-sepolia.blockscout.com/tx/0x84c025e2c870d06d066c249d86679f3ed48142f6c4074ce07a3174ebf29006fb) · [Content-Addressed URI Tx `0x99bdec72...`](https://celo-sepolia.blockscout.com/tx/0x99bdec72223b5fe099c2c76ff870eb25e3de03c4b0b879a1f47b1fd40c15dfbc) |
+| **Celopedia & ERC-8021 Attribution Tag** | `alle_ai_verify` (`0x616c6c65...80218021`) | Installed in `.agents/skills/celopedia-skill` & `.claude/skills/celopedia-skill`; appended via `@celo/attribution-tags` |
 | **Attestation `#0` (`AGREE`, 97.15%)** | Alle-AI Multi-Model Fact Verification | [Tx `0x03691513...`](https://celo-sepolia.blockscout.com/tx/0x036915134faffe9793659c75252c8917722e79b979091a4975c40139b4d354a6) |
 | **Attestation `#1` (`AGREE`, 97.15%)** | Alle-Quant Autonomous Trade Journal & Risk Cap Audit | [Tx `0xc5d5aab1...`](https://celo-sepolia.blockscout.com/tx/0xc5d5aab1294481f883af91fb279a9fc35ecec112d0895f4ab72fae99f8d26a7b) |
 | **Attestation `#2` (`SPLIT`, 30.13%)** | Multi-Agent Divergent Signal Check | [Tx `0x9041fc4c...`](https://celo-sepolia.blockscout.com/tx/0x9041fc4c2d97c8d0c15227b29e85a0fa627885f1d336f9767949da513ea326f3) |
 | **Attestation `#3` (`DISAGREE`, 98.20%)** | Alle-Quant Risk Guardrail Rejection | [Tx `0x9cae91b9...`](https://celo-sepolia.blockscout.com/tx/0x9cae91b9df173ce18d266571dad1f486f6c565805e62b72a03a734081464919e) |
 | **Attestation `#4` (`AGREE`, 97.15%)** | End-to-End `POST /v1/verify` Live HTTP API Call | [Tx `0xa15ad9e9...`](https://celo-sepolia.blockscout.com/tx/0xa15ad9e9f52879e35ba1458a2ae6e778df8d7fbcbd51ac8ffd2410ce43f1ce6b) |
+| **Attestation `#5` (`AGREE`, 97.15%)** | Celopedia ERC-8021 Tagged Multi-Model Attestation | [Tx `0xfa124b60...`](https://celo-sepolia.blockscout.com/tx/0xfa124b60ea2e685b22a4ede37fa512a3aa7656d9299afcacc33a66daa402aa44) |
 
 ---
 

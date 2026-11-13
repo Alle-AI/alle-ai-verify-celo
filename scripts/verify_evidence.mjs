@@ -10,6 +10,7 @@ import { execSync } from "node:child_process";
 import dotenv from "dotenv";
 import { createPublicClient, http } from "viem";
 import { celo, celoSepolia } from "viem/chains";
+import { verifyTx } from "@celo/attribution-tags";
 
 dotenv.config();
 
@@ -214,9 +215,30 @@ async function main() {
       if (agentAddr && owner.toLowerCase() !== agentAddr.toLowerCase()) {
         throw new Error(`Owner mismatch: expected ${agentAddr}, got ${owner}`);
       }
-      return `owner=${owner}, tokenURI=${uri}`;
+      const shortUri = uri.length > 64 ? `${uri.slice(0, 64)}... (${uri.length} chars, content-addressed)` : uri;
+      return `owner=${owner}, tokenURI=${shortUri}`;
     });
   }
+
+  await check("LOCAL: Celopedia knowledge skill installed (.agents/skills/celopedia-skill & .claude/skills/celopedia-skill)", async () => {
+    const p1 = path.join(ROOT, ".agents", "skills", "celopedia-skill", "SKILL.md");
+    const p2 = path.join(ROOT, ".claude", "skills", "celopedia-skill", "SKILL.md");
+    if (!fs.existsSync(p1) || !fs.existsSync(p2)) {
+      throw new Error("Missing celopedia-skill SKILL.md");
+    }
+    return "celo-org/celopedia-skills installed in .agents/skills and .claude/skills";
+  });
+
+  await check("TESTNET: Celopedia ERC-8021 Attribution Tag verified onchain (Attestation #5)", async () => {
+    const tagInfo = await verifyTx({
+      client: sepClient,
+      hash: "0xfa124b60ea2e685b22a4ede37fa512a3aa7656d9299afcacc33a66daa402aa44",
+    });
+    if (!tagInfo || !tagInfo.codes.includes("alle_ai_verify")) {
+      throw new Error(`Expected ERC-8021 tag 'alle_ai_verify', got ${JSON.stringify(tagInfo)}`);
+    }
+    return `ERC-8021 decoded onchain -> ${JSON.stringify(tagInfo)}`;
+  });
 
   const mainRegistry = process.env.MAINNET_VERIFICATION_REGISTRY;
   if (mainRegistry && artifact) {

@@ -27,6 +27,8 @@ const FORBIDDEN_PATTERNS = [
       "EVIDENCE.md",
       "REPORT.md",
       "APPLICATION_ANSWERS.md",
+      "Alle-AI_Verify_Prezenti_Frontier_Application_Draft.pdf",
+      "scripts/generate-application-pdf.mjs",
       "LEARNING.md",
       "README.md",
       "verify_evidence.sh",

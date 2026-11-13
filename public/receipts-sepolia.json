@@ -58,5 +58,26 @@
     "explorerUrl": "https://celo-sepolia.blockscout.com/tx/0x9cae91b9df173ce18d266571dad1f486f6c565805e62b72a03a734081464919e",
     "network": "sepolia",
     "chainId": 11142220
+  },
+  {
+    "attestationId": 5,
+    "label": "Celopedia ERC-8021 Tagged Attestation — Multi-Model Consensus",
+    "verdict": "AGREE",
+    "verdictCode": 0,
+    "agreementBps": 9715,
+    "modelCount": 3,
+    "claimHash": "0x4d5b587fd7d87ed4b9af28f865a250f591eebe534fe5c3377449b1a64dd84906",
+    "resultHash": "0xd9c7fb6bc5493e6e1d6ff89c1990f71e6a5c9be2bd96757f879d081aa43580f4",
+    "attesterAgentId": 932,
+    "timestamp": 1794577133,
+    "blockNumber": 41293145,
+    "txHash": "0xfa124b60ea2e685b22a4ede37fa512a3aa7656d9299afcacc33a66daa402aa44",
+    "erc8021Attribution": {
+      "codes": [
+        "alle_ai_verify"
+      ],
+      "schemaId": 0
+    },
+    "explorerUrl": "https://celo-sepolia.blockscout.com/tx/0xfa124b60ea2e685b22a4ede37fa512a3aa7656d9299afcacc33a66daa402aa44"
   }
 ]
