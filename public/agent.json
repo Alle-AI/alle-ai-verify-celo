@@ -1,0 +1,30 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "Alle-AI Verify",
+  "description": "Open multi-model AI verification and consensus attestation infrastructure on Celo. Evaluates agent claims and outputs across multiple frontier models (Claude, GPT, Gemini), computes agreement in basis points (0-10000), and records tamper-proof, privacy-preserving (hash-only) receipts on Celo.",
+  "image": "https://alle-ai.com/favicon.ico",
+  "services": [
+    {
+      "name": "web",
+      "endpoint": "https://github.com/Alle-AI/alle-ai-verify-celo"
+    },
+    {
+      "name": "verify-api",
+      "endpoint": "https://github.com/Alle-AI/alle-ai-verify-celo#post-v1verify",
+      "version": "1.0.0"
+    },
+    {
+      "name": "A2A",
+      "endpoint": "https://raw.githubusercontent.com/Alle-AI/alle-ai-verify-celo/main/public/.well-known/agent-card.json",
+      "version": "0.3.0"
+    }
+  ],
+  "x402Support": false,
+  "active": true,
+  "supportedTrust": [
+    "reputation",
+    "validation",
+    "self-agent-id"
+  ],
+  "registrations": []
+}

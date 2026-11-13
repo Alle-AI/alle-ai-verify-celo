@@ -1,0 +1,37 @@
+{
+  "name": "Alle-AI Verify",
+  "organization": "Alle-AI LTD",
+  "description": "Open multi-model verification and consensus attestation infrastructure on Celo (Chain ID 42220 / Sepolia 11142220). Any agent or application submits a claim or decision payload; Alle-AI evaluates consensus across multiple AI models and anchors a tamper-proof hash receipt on Celo.",
+  "version": "1.0.0",
+  "url": "https://github.com/Alle-AI/alle-ai-verify-celo",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": true
+  },
+  "authentication": {
+    "schemes": ["None", "SelfAgentID", "Bearer"]
+  },
+  "defaultInputModes": ["application/json", "text/plain"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "id": "multi-model-verify",
+      "name": "Multi-Model Output & Claim Verification",
+      "description": "Cross-checks an AI output, factual claim, or autonomous agent decision rationale across multiple frontier models and writes a hash-only verification receipt to VerificationRegistry on Celo.",
+      "tags": ["verification", "consensus", "multi-model", "erc-8004", "self-agent-id", "celo"],
+      "examples": [
+        "POST /v1/verify { \"claim\": \"Celo Mainnet chain ID is 42220\", \"models\": [\"claude-sonnet-4-5\", \"gpt-5-1\", \"gemini-2-5-pro\"] }",
+        "POST /v1/verify { \"claim\": { \"agent\": \"Alle-Quant\", \"symbol\": \"CELO/USDT\", \"side\": \"LONG\", \"riskCapPassed\": true } }"
+      ]
+    }
+  ],
+  "celoContracts": {
+    "mainnetChainId": 42220,
+    "sepoliaChainId": 11142220,
+    "erc8004IdentityRegistryMainnet": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+    "erc8004IdentityRegistrySepolia": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+    "selfAgentRegistryMainnet": "0xaC3DF9ABf80d0F5c020C06B04Cced27763355944",
+    "selfAgentRegistrySepolia": "0x043DaCac8b0771DD5b444bCC88f2f8BBDBEdd379"
+  }
+}
