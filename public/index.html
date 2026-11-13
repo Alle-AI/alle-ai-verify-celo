@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alle-AI Verify — Celo Multi-Model Verification Proof Page</title>
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card: #131b29;
+      --border: #233047;
+      --text: #f0f6fc;
+      --muted: #8b9bb4;
+      --celo: #fcff52;
+      --agree: #2ea043;
+      --split: #d29922;
+      --disagree: #f85149;
+      --accent: #388bfd;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 32px 20px 64px; }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #182336;
+      color: var(--text);
+    }
+    .badge.celo { border-color: var(--celo); color: var(--celo); }
+    h1 { margin: 0; font-size: 28px; letter-spacing: -0.02em; }
+    .subtitle { margin: 6px 0 0; color: var(--muted); max-width: 720px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    .stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+    .stat-val { font-size: 20px; font-weight: 700; margin-top: 6px; word-break: break-all; }
+    .stat-val a { color: var(--celo); text-decoration: none; font-size: 14px; font-family: monospace; }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .panel h2 { margin-top: 0; font-size: 18px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; }
+    .pill {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 11.5px;
+    }
+    .pill.AGREE { background: rgba(46, 160, 67, 0.2); color: #56d364; border: 1px solid var(--agree); }
+    .pill.SPLIT { background: rgba(210, 153, 34, 0.2); color: #e3b341; border: 1px solid var(--split); }
+    .pill.DISAGREE { background: rgba(248, 81, 73, 0.2); color: #ff7b72; border: 1px solid var(--disagree); }
+    a.link { color: var(--accent); text-decoration: none; }
+    a.link:hover { text-decoration: underline; }
+    .net-switch { display: flex; gap: 8px; }
+    button {
+      background: #1f2d44;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button.active { background: var(--celo); color: #0b0f17; border-color: var(--celo); }
+    textarea {
+      width: 100%;
+      min-height: 76px;
+      background: #0d131f;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 10px;
+      font-family: inherit;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Alle-AI Verify <span style="color: var(--celo);">on Celo</span></h1>
+        <p class="subtitle">
+          Open Multi-Model AI Output Verification &amp; Consensus Attestation Registry.
+          Privacy-preserving by design: only <code>keccak256</code> hashes (<code>claimHash</code> &amp; <code>resultHash</code>) and consensus scores are stored onchain.
+        </p>
+        <div class="badge-row">
+          <span class="badge celo">Celo Mainnet (42220) &amp; Sepolia (11142220)</span>
+          <span class="badge">ERC-8004 Identity Registered</span>
+          <span class="badge">Self Agent ID (ZK Proof-of-Human)</span>
+          <a class="badge" href="/agent.json" target="_blank" style="text-decoration:none;">ERC-8004 agent.json ↗</a>
+          <a class="badge" href="/.well-known/agent-card.json" target="_blank" style="text-decoration:none;">A2A Agent Card ↗</a>
+        </div>
+      </div>
+      <div class="net-switch">
+        <button id="btn-mainnet" onclick="switchNetwork('mainnet')">Celo Mainnet</button>
+        <button id="btn-sepolia" class="active" onclick="switchNetwork('sepolia')">Celo Sepolia</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <div class="stat-card">
+        <div class="stat-label">VerificationRegistry Contract</div>
+        <div class="stat-val" id="stat-contract">Loading...</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Onchain Receipts Anchored</div>
+        <div class="stat-val" id="stat-total">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Authorized Attester Agent Wallet</div>
+        <div class="stat-val" id="stat-agent" style="font-size:13px;font-family:monospace;">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">ERC-8004 / Self Agent ID</div>
+        <div class="stat-val" id="stat-agent-id">—</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Recent Onchain Verification Receipts</h2>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Verification Context</th>
+              <th>Verdict</th>
+              <th>Agreement</th>
+              <th>Models</th>
+              <th>Claim Hash (keccak256)</th>
+              <th>Result Hash (keccak256)</th>
+              <th>Timestamp (UTC)</th>
+              <th>Onchain Proof</th>
+            </tr>
+          </thead>
+          <tbody id="receipts-body">
+            <tr><td colspan="9" style="color:var(--muted);">Fetching live receipts from Celo...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Verify a Claim Hash Locally (Zero Data Leakage)</h2>
+      <p style="color:var(--muted);font-size:13.5px;margin-top:0;">
+        Paste any claim string or JSON payload to compute its deterministic <code>keccak256</code> <code>claimHash</code> and compare it against the onchain registry.
+      </p>
+      <textarea id="hash-input" placeholder="Enter claim text or JSON to compute its canonical keccak256 claimHash..."></textarea>
+      <button class="active" onclick="computeHash()">Compute keccak256 Claim Hash</button>
+      <div id="hash-output" class="mono" style="margin-top:12px;color:var(--celo);"></div>
+    </div>
+  </div>
+
+  <script>
+    let currentNetwork = 'sepolia';
+
+    function shortHex(h) {
+      if (!h || h.length < 14) return h || '—';
+      return h.slice(0, 10) + '...' + h.slice(-8);
+    }
+
+    async function switchNetwork(net) {
+      currentNetwork = net;
+      document.getElementById('btn-mainnet').className = net === 'mainnet' ? 'active' : '';
+      document.getElementById('btn-sepolia').className = net === 'sepolia' ? 'active' : '';
+      await loadDashboard();
+    }
+
+    async function loadDashboard() {
+      const [healthRes, recRes] = await Promise.all([
+        fetch('/health').then(r => r.json()),
+        fetch(`/v1/receipts?network=${currentNetwork}&limit=25`).then(r => r.json())
+      ]);
+
+      const contractAddr = recRes.registryAddress;
+      const contractEl = document.getElementById('stat-contract');
+      if (contractAddr) {
+        contractEl.innerHTML = `<a href="${recRes.contractExplorerUrl}" target="_blank">${contractAddr} ↗</a>`;
+      } else {
+        contractEl.textContent = 'Pending deployment';
+      }
+
+      document.getElementById('stat-total').textContent = recRes.totalVerifications ?? 0;
+      document.getElementById('stat-agent').textContent = healthRes.agentIdentity?.agentAddress || '—';
+
+      const ercId = currentNetwork === 'mainnet'
+        ? healthRes.agentIdentity?.mainnetErc8004AgentId
+        : healthRes.agentIdentity?.sepoliaErc8004AgentId;
+      const selfId = currentNetwork === 'mainnet'
+        ? healthRes.agentIdentity?.mainnetSelfAgentId
+        : healthRes.agentIdentity?.sepoliaSelfAgentId;
+      document.getElementById('stat-agent-id').textContent =
+        `ERC-8004: ${ercId ? '#' + ercId : 'Pending'} | Self ID: ${selfId ? '#' + selfId : 'Pending'}`;
+
+      const tbody = document.getElementById('receipts-body');
+      if (!recRes.receipts || recRes.receipts.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="color:var(--muted);">No receipts found on ${currentNetwork} yet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = recRes.receipts.map(r => `
+        <tr>
+          <td class="mono">#${r.attestationId}</td>
+          <td>${r.label}</td>
+          <td><span class="pill ${r.verdict}">${r.verdict}</span></td>
+          <td class="mono"><strong>${r.agreementPct}</strong> (${r.agreementBps} bps)</td>
+          <td class="mono">${r.modelCount} models</td>
+          <td class="mono" title="${r.claimHash}">${shortHex(r.claimHash)}</td>
+          <td class="mono" title="${r.resultHash}">${shortHex(r.resultHash)}</td>
+          <td class="mono">${r.isoTimestamp.replace('T', ' ').replace('.000Z', ' UTC')}</td>
+          <td><a class="link mono" href="${r.explorerUrl}" target="_blank">Verify on Explorer ↗</a></td>
+        </tr>
+      `).join('');
+    }
+
+    async function computeHash() {
+      const raw = document.getElementById('hash-input').value.trim();
+      if (!raw) return;
+      let claim = raw;
+      try { claim = JSON.parse(raw); } catch {}
+      const res = await fetch('/v1/hash', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ claim })
+      }).then(r => r.json());
+      document.getElementById('hash-output').textContent = res.claimHash
+        ? `Canonical claimHash: ${res.claimHash}`
+        : `Error: ${res.error}`;
+    }
+
+    loadDashboard();
+  </script>
+</body>
+</html>
