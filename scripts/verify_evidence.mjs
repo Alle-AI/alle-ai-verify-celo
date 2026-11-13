@@ -260,6 +260,32 @@ async function main() {
     });
   }
 
+  const mainSelfId = process.env.MAINNET_SELF_AGENT_ID;
+  const selfSigningAddr = process.env.SELF_AGENT_SIGNING_ADDRESS;
+  if (mainSelfId && selfSigningAddr) {
+    await check(`LIVE: Self Agent ID #${mainSelfId} verified on Celo Mainnet (Proof-of-Human)`, async () => {
+      const paddedKey = `0x${selfSigningAddr.replace(/^0x/, "").padStart(64, "0")}`;
+      const [resolvedId, isVerified] = await Promise.all([
+        mainClient.readContract({
+          address: "0xaC3DF9ABf80d0F5c020C06B04Cced27763355944",
+          abi: SELF_REGISTRY_READ_ABI,
+          functionName: "getAgentId",
+          args: [paddedKey],
+        }),
+        mainClient.readContract({
+          address: "0xaC3DF9ABf80d0F5c020C06B04Cced27763355944",
+          abi: SELF_REGISTRY_READ_ABI,
+          functionName: "isVerifiedAgent",
+          args: [paddedKey],
+        }),
+      ]);
+      if (String(resolvedId) !== String(mainSelfId) || !isVerified) {
+        throw new Error(`Expected verified agentId=${mainSelfId}, got id=${resolvedId}, isVerified=${isVerified}`);
+      }
+      return `agentId=#${resolvedId}, signingAddress=${selfSigningAddr}, owner=${agentAddr}, isVerifiedAgent=${isVerified}`;
+    });
+  }
+
   console.log(`\n=== Summary: ${passed} passed, ${failed} failed ===`);
   if (failed > 0) process.exit(1);
 }

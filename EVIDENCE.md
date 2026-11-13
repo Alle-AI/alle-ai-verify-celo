@@ -26,6 +26,6 @@ This ledger is the single source of truth for **Alle-AI Verify on Celo** (Prezen
 | `POST /v1/verify` multi-model consensus service + agent/Alle-Quant verification hook working end-to-end on Celo Sepolia (`attestationId = #4`) | **TESTNET** | [E2E Tx #4 on Blockscout](https://celo-sepolia.blockscout.com/tx/0xa15ad9e9f52879e35ba1458a2ae6e778df8d7fbcbd51ac8ffd2410ce43f1ce6b) / `node scripts/e2e-verify-call.mjs --network sepolia` | 2026-11-13T01:54Z |
 | `VerificationRegistry` deployed & source-verified on Celo Mainnet (`42220`) | **NOT BUILT** | — | — |
 | Alle-AI Verifier registered on Celo Mainnet via ERC-8004 (`0x8004A169...`) | **NOT BUILT** | — | — |
-| Alle-AI Verifier registered on Celo Mainnet via Self Agent ID (`0xaC3DF9AB...`) with human NFC passport proof | **NOT BUILT** | — | — |
+| Alle-AI Verifier registered on Celo Mainnet via Self Agent ID (`0xaC3DF9AB...`) with human NFC passport proof (`agentId = #202`, `owner = 0x0339DCD1Af5c464Ff25195f015Ee0DCA161eB74A`, `isVerifiedAgent = true`) | **LIVE** | [Celoscan Tx `0x2ec593a6...`](https://celoscan.io/tx/0x2ec593a6fecef15ecfedf9f85a8dea6c7c21ba9f9cbfa7a981e24407469a8ca9) / [NFT #202 on Celoscan](https://celoscan.io/nft/0xaC3DF9ABf80d0F5c020C06B04Cced27763355944/202) / `npm run verify:evidence` | 2026-11-13T03:03Z |
 | Genuine onchain verification transactions recorded on Celo Mainnet `VerificationRegistry` | **NOT BUILT** | — | — |
 | Public read-only Proof Page + machine-readable Agent Card (`.well-known/agent-card.json` & ERC-8004 `agent.json`) live | **NOT BUILT** | — | — |

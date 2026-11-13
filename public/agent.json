@@ -31,6 +31,13 @@
       "agentId": 932,
       "agentRegistry": "eip155:11142220:0x8004A818BFB912233c491871b3d84c89A494BD9e",
       "txHash": "0x84c025e2c870d06d066c249d86679f3ed48142f6c4074ce07a3174ebf29006fb"
+    },
+    {
+      "agentId": 202,
+      "agentRegistry": "eip155:42220:0xaC3DF9ABf80d0F5c020C06B04Cced27763355944",
+      "agentSigningAddress": "0x0Fa2A0B64Ea66Fe8153bAf1D88C3480aab55174D",
+      "ownerWallet": "0x0339DCD1Af5c464Ff25195f015Ee0DCA161eB74A",
+      "registeredAtBlock": 82637919
     }
   ]
 }
