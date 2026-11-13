@@ -26,5 +26,11 @@
     "validation",
     "self-agent-id"
   ],
-  "registrations": []
+  "registrations": [
+    {
+      "agentId": 932,
+      "agentRegistry": "eip155:11142220:0x8004A818BFB912233c491871b3d84c89A494BD9e",
+      "txHash": "0x84c025e2c870d06d066c249d86679f3ed48142f6c4074ce07a3174ebf29006fb"
+    }
+  ]
 }

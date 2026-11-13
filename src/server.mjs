@@ -87,11 +87,11 @@ export function createApp() {
 
   // 1. Machine-readable manifests (ERC-8004 + A2A Agent Card)
   app.get("/agent.json", (_req, res) => {
-    res.sendFile(AGENT_JSON_PATH);
+    res.json(JSON.parse(fs.readFileSync(AGENT_JSON_PATH, "utf8")));
   });
 
   app.get("/.well-known/agent-card.json", (_req, res) => {
-    res.sendFile(AGENT_CARD_PATH);
+    res.json(JSON.parse(fs.readFileSync(AGENT_CARD_PATH, "utf8")));
   });
 
   // 2. Service Health & Onchain Identity Metadata

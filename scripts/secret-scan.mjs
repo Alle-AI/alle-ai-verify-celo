@@ -32,6 +32,7 @@ const FORBIDDEN_PATTERNS = [
       "verify_evidence.sh",
       "scripts/verify_evidence.mjs",
       "test/",
+      "public/",
     ],
   },
   {

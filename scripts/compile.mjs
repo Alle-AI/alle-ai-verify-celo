@@ -48,7 +48,10 @@ function collectSources(sourceKey, fullPath) {
       impFull = path.join(ROOT, "node_modules", imp);
     } else {
       impFull = path.resolve(path.dirname(fullPath), imp);
-      impKey = path.relative(ROOT, impFull).replace(/\\/g, "/");
+      impKey = path
+        .relative(ROOT, impFull)
+        .replace(/\\/g, "/")
+        .replace(/^node_modules\//, "");
     }
     collectSources(impKey, impFull);
   }
