@@ -320,7 +320,7 @@ const html = `<!DOCTYPE html>
       </tr>
       <tr>
         <th>Name of lead applicant (for KYC)</th>
-        <td><strong>Dickson Agyei</strong></td>
+        <td><strong>Dickson Agyei</strong> (Email: <code>dickson@alle-ai.com</code> · Logo: <code>public/logo.png</code>)</td>
       </tr>
       <tr>
         <th>Country company is registered</th>

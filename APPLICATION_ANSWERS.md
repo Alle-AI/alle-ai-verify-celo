@@ -118,7 +118,7 @@ With a Frontier grant, our 4-month delivery milestones are concrete and independ
   `Dickson Agyei`
 
 * **Email of lead applicant:**  
-  *(Enter your direct founder email address)*
+  `dickson@alle-ai.com`
 
 * **Country company is registered (for KYC & contract):**  
   `United Kingdom (Alle-AI LTD)`
@@ -127,7 +127,7 @@ With a Frontier grant, our 4-month delivery milestones are concrete and independ
   `AI`
 
 * **Your logo:**  
-  *(Upload the high-resolution Alle-AI logo PNG)*
+  `public/logo.png` *(Official Alle-AI logo saved in `public/logo.png` and `public/logo-transparent.png`)*
 
 * **Grant L2 Delivery Address:**  
   *(Enter the Celo wallet or Safe address you personally control where you want Prezenti to send the USDm grant payout — or use our project Deployer address `0xeb2E09B10C4f1dcA08CDc58a39c182c932102134` only if you back up its `.env` key safely)*
