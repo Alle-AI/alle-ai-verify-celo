@@ -130,4 +130,4 @@ With a Frontier grant, our 4-month delivery milestones are concrete and independ
   `public/logo.png` *(Official Alle-AI logo saved in `public/logo.png` and `public/logo-transparent.png`)*
 
 * **Grant L2 Delivery Address:**  
-  *(Enter the Celo wallet or Safe address you personally control where you want Prezenti to send the USDm grant payout — or use our project Deployer address `0xeb2E09B10C4f1dcA08CDc58a39c182c932102134` only if you back up its `.env` key safely)*
+  `0x2eAC86dc25204f110e84f4729759E7Bb142961CF`

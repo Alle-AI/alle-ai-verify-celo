@@ -332,7 +332,7 @@ const html = `<!DOCTYPE html>
       </tr>
       <tr>
         <th>Grant L2 Delivery Address (Celo)</th>
-        <td><code>0xeb2E09B10C4f1dcA08CDc58a39c182c932102134</code> <em>(or Alle-AI LTD hardware/Safe address confirmed at submission)</em></td>
+        <td><code>0x2eAC86dc25204f110e84f4729759E7Bb142961CF</code> (<a href="https://celoscan.io/address/0x2eAC86dc25204f110e84f4729759E7Bb142961CF">View on Celoscan</a>)</td>
       </tr>
     </tbody>
   </table>
